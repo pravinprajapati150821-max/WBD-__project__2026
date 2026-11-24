@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OROVE | Premium Fragrance</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#090909;color:white;font-family:Arial,sans-serif}
+header{padding:20px 5%;background:#111;
+display:flex;justify-content:space-between;align-items:center;
+flex-wrap:wrap;border-bottom:1px solid #c6a45c}
+.logo{font-size:30px;letter-spacing:6px;color:#d8b66a}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;cursor:pointer}
+nav a:hover{color:#d8b66a}
+.page{display:none;padding:50px 7%;min-height:75vh}
+.page.active{display:block}
+h1,h2,h3{color:#d8b66a}
+.hero{text-align:center;padding:110px 15px;
+background:linear-gradient(#0008,#000b),
+url('https://images.unsplash.com/photo-1594035910387-fea47794261f?w=1200');
+background-position:center;background-size:cover}
+.hero h1{font-size:65px;letter-spacing:12px}
+.hero p{margin:18px}
+button,.btn{background:#d8b66a;color:#090909;
+border:0;padding:13px 25px;cursor:pointer;
+font-weight:bold;text-decoration:none;display:inline-block}
+.grid{display:grid;grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));gap:25px;margin-top:35px}
+.card{background:#191919;padding:15px;text-align:center;
+border:1px solid #40351f}
+.card img{width:100%;height:250px;object-fit:cover}
+.card h3{margin:15px}
+.card p{margin:10px}
+.price{color:#d8b66a;font-size:25px;margin:12px}
+input,textarea,select{width:100%;padding:14px;margin:9px 0;
+background:#181818;border:1px solid #8d7545;color:white}
+form{max-width:550px;margin:25px auto}
+.info{max-width:650px;margin:20px auto;line-height:2}
+footer{text-align:center;padding:30px;color:#d8b66a;
+border-top:1px solid #c6a45c}
+@media(max-width:600px){
+header{flex-direction:column;gap:18px}
+nav{justify-content:center;gap:12px}
+.hero h1{font-size:42px}
+.page{padding:35px 5%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">OROVE</div>
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('collection')">Collection</a>
+<a onclick="showPage('address')">Address</a>
+<a onclick="showPage('payment')">Payment</a>
+<a onclick="showPage('contact')">Contact</a>
+<a onclick="showPage('about')">About</a>
+</nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="page active" style="padding:0">
+<div class="hero">
+<h1>OROVE</h1>
+<p>PREMIUM FRAGRANCE</p>
+<p>The Essence of Luxury.</p>
+<button onclick="showPage('collection')">SHOP NOW</button>
+</div>
+<div class="info" style="text-align:center">
+<h2>Welcome to OROVE</h2>
+<p>Discover elegance, confidence and luxury in every fragrance.</p>
+</div>
+</section>
+
+<!-- COLLECTION -->
+<section id="collection" class="page">
+<h1 style="text-align:center">OUR COLLECTION</h1>
+<p style="text-align:center;margin-top:15px">
+Discover Your Signature Fragrance | 100 ML
+</p>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500" alt="OROVE Gold">
+<h3>OROVE GOLD</h3>
+<p>Elegant Premium Fragrance</p>
+<p>100 ML</p>
+<div class="price">₹1,499</div>
+<button onclick="buy('OROVE GOLD',1499)">BUY NOW</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=500" alt="OROVE Black">
+<h3>OROVE BLACK</h3>
+<p>Bold & Timeless Fragrance</p>
+<p>100 ML</p>
+<div class="price">₹1,299</div>
+<button onclick="buy('OROVE BLACK',1299)">BUY NOW</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500" alt="OROVE Royal">
+<h3>OROVE ROYAL</h3>
+<p>Luxury Signature Fragrance</p>
+<p>100 ML</p>
+<div class="price">₹1,799</div>
+<button onclick="buy('OROVE ROYAL',1799)">BUY NOW</button>
+</div>
+
+</div>
+</section>
+
+<!-- ADDRESS -->
+<section id="address" class="page">
+<h1 style="text-align:center">DELIVERY ADDRESS</h1>
+<form id="addressForm">
+<input id="customer" placeholder="Full Name" required>
+<input id="phone" type="tel" placeholder="Mobile Number" required>
+<textarea id="addressText" placeholder="Full Delivery Address" required></textarea>
+<input id="city" placeholder="City" required>
+<input id="pincode" placeholder="PIN Code" required>
+<button type="submit">CONTINUE TO PAYMENT</button>
+</form>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment" class="page">
+<h1 style="text-align:center">PAYMENT</h1>
+<div class="info">
+<p>Selected Product: <b id="selectedProduct">No product selected</b></p>
+<p>Amount: <b id="selectedPrice">₹0</b></p>
+<br>
+<h2>Payment Options</h2>
+<p>1. Cash on Delivery (confirm availability with seller)</p>
+<p>2. UPI payment (contact seller for verified payment details)</p>
+<br>
+<button onclick="sendOrder()">CONFIRM ORDER ON WHATSAPP</button>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="page">
+<h1 style="text-align:center">CONTACT US</h1>
+<div class="info" style="text-align:center">
+<p>OROVE PREMIUM FRAGRANCE</p>
+<p>WhatsApp: +91 8849441250</p>
+<p>For orders and enquiries, contact us.</p>
+<br>
+<a class="btn" href="https://wa.me/918849441250">
+CHAT ON WHATSAPP
+</a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+<h1 style="text-align:center">ABOUT OROVE</h1>
+<div class="info" style="text-align:center">
+<p>
+OROVE is a premium fragrance brand.
+Discover elegance, confidence and luxury
+in every fragrance.
+</p>
+<br>
+<h2>The Essence of Luxury.</h2>
+<p>A Fragrance That Defines You.</p>
+</div>
+</section>
+
+<footer>
+<h2>OROVE</h2>
+<p>PREMIUM FRAGRANCE</p>
+<p>© 2026 OROVE. All Rights Reserved.</p>
+</footer>
+
+<script>
+let product = "";
+let price = 0;
+let customerData = {};
+
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>{
+p.classList.remove('active');
+});
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function buy(name,amount){
+product=name;
+price=amount;
+document.getElementById('selectedProduct').textContent=name;
+document.getElementById('selectedPrice').textContent=
+'₹'+amount.toLocaleString('en-IN');
+showPage('address');
+}
+
+document.getElementById('addressForm').addEventListener('submit',function(e){
+e.preventDefault();
+
+customerData={
+name:document.getElementById('customer').value,
+phone:document.getElementById('phone').value,
+address:document.getElementById('addressText').value,
+city:document.getElementById('city').value,
+pin:document.getElementById('pincode').value
+};
+
+showPage('payment');
+});
+
+function sendOrder(){
+if(!product || !customerData.name){
+alert('Please select a product and enter your address.');
+return;
+}
+
+let message=
+'Hello OROVE! I want to order:\n'+
+'Product: '+product+'\n'+
+'Size: 100 ML\n'+
+'Price: Rs. '+price+'\n'+
+'Name: '+customerData.name+'\n'+
+'Phone: '+customerData.phone+'\n'+
+'Address: '+customerData.address+'\n'+
+'City: '+customerData.city+'\n'+
+'PIN: '+customerData.pin;
+
+window.open(
+'https://wa.me/918849441250?text='+encodeURIComponent(message),
+'_blank'
+);
+}
+</script>
+
+</body>
+</html>
